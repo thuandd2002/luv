@@ -7,7 +7,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <style>
             body {
-                background: url("/luv/5b8ef840e222507c0933.jpg") no-repeat center center
+                background: url("/5b8ef840e222507c0933.jpg") no-repeat center center
                     fixed;
                 background-size: cover;
                 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -41,29 +41,38 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
             }
-            /* .avatar {
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-                border-radius: 50%;
-                margin-bottom: 20px;
-                border: 4px solid #ff5c8d;
-            } */
             button:hover {
                 background-color: #ff3370;
             }
             #btn-no {
                 position: relative;
             }
+
+            /* Thêm style cho trái tim */
+            .heart {
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 50px;
+                animation: fall 2s ease-in forwards;
+                opacity: 0;
+            }
+
+            @keyframes fall {
+                0% {
+                    transform: translateY(-100px) translateX(-50%);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) translateX(-50%);
+                    opacity: 0;
+                }
+            }
         </style>
     </head>
     <body>
         <div class="container">
-            <!-- <img
-                src="/luv/5b8ef840e222507c0933.jpg"
-                alt="Ảnh 2 đứa"
-                class="avatar"
-            /> -->
             <h1>Quỳnh ơi đừng giận anh nữa nhé 🥺</h1>
             <button id="btn-yes">Vâng 💖</button>
             <button id="btn-no">Không, em giận tiếp 😤</button>
@@ -80,7 +89,28 @@
                     icon: "success",
                     confirmButtonText: "Yêu anh nhiều nhiều nhé 💕",
                 });
+
+                // Tạo nhiều trái tim ngẫu nhiên
+                for (let i = 0; i < 10; i++) { // Tạo 10 trái tim
+                    createHeart();
+                }
             });
+
+            function createHeart() {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.textContent = "💖"; // Trái tim
+                document.body.appendChild(heart);
+
+                // Cho mỗi trái tim rơi xuống với hiệu ứng
+                const randomX = Math.floor(Math.random() * window.innerWidth); // Vị trí ngẫu nhiên
+                heart.style.left = randomX + "px";
+
+                // Tự động xoá trái tim sau khi hoạt ảnh hoàn thành
+                heart.addEventListener("animationend", () => {
+                    heart.remove();
+                });
+            }
 
             btnNo.addEventListener("touchstart", moveButton);
             btnNo.addEventListener("mouseover", moveButton);
