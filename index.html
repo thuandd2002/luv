@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quỳnh ơi đừng giận anh nữa nha</title>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <style>
+            body {
+                background: url("/luv/5b8ef840e222507c0933.jpg") no-repeat center center
+                    fixed;
+                background-size: cover;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background: white;
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                max-width: 90%;
+            }
+            h1 {
+                color: #ff5c8d;
+                margin-bottom: 20px;
+                font-size: 22px;
+            }
+            button {
+                padding: 12px 24px;
+                margin: 10px;
+                border: none;
+                border-radius: 12px;
+                background-color: #ff5c8d;
+                color: white;
+                font-size: 18px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            /* .avatar {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                border: 4px solid #ff5c8d;
+            } */
+            button:hover {
+                background-color: #ff3370;
+            }
+            #btn-no {
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- <img
+                src="/luv/5b8ef840e222507c0933.jpg"
+                alt="Ảnh 2 đứa"
+                class="avatar"
+            /> -->
+            <h1>Quỳnh ơi đừng giận anh nữa nhé 🥺</h1>
+            <button id="btn-yes">Vâng 💖</button>
+            <button id="btn-no">Không, em giận tiếp 😤</button>
+        </div>
+
+        <script>
+            const btnNo = document.getElementById("btn-no");
+            const btnYes = document.getElementById("btn-yes");
+
+            btnYes.addEventListener("click", () => {
+                Swal.fire({
+                    title: "Anh biết mà! 💖",
+                    text: "Em sẽ không giận anh nữa 🥰",
+                    icon: "success",
+                    confirmButtonText: "Yêu anh nhiều nhiều nhé 💕",
+                });
+            });
+
+            btnNo.addEventListener("touchstart", moveButton);
+            btnNo.addEventListener("mouseover", moveButton);
+
+            function moveButton() {
+                const container = document.querySelector(".container");
+                const maxX = window.innerWidth - btnNo.offsetWidth - 50;
+                const maxY = window.innerHeight - btnNo.offsetHeight - 50;
+
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+
+                btnNo.style.position = "absolute";
+                btnNo.style.left = randomX + "px";
+                btnNo.style.top = randomY + "px";
+            }
+        </script>
+    </body>
+</html>
